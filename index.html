@@ -1,46 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-    
+<html>
     <head>
-        <script language="javascript" type="text/javascript" src="jquery.min.js"></script>
+        <script language="javascript" type="text/javascript"  src="jquery.min.js"></script>
         <script language="javascript" type="text/javascript" src="arbor.js" ></script>
         <script language="javascript" type="text/javascript" src="arbor-graphics.js" ></script>
         <script language="javascript" type="text/javascript" src="renderer.js" ></script>
     </head>
-    
     <body>
-      <canvas id="viewport" width="1200" height="700"></canvas>
-        
+      <canvas id="viewport" width="800" height="600"></canvas>
       <script language="javascript" type="text/javascript">
-          
           var sys = arbor.ParticleSystem(1000, 400,1);
-
           sys.parameters({gravity:true});
           sys.renderer = Renderer("#viewport") ;
-          var data = {
-              nodes:{
-                  tx:{'color':'red','shape':'dot','label':'               TEXAS               '},
-                  nm:{'color':'green','shape':'dot','label':'   NEW MEXICO   '},
-                  ok:{'color':'blue','shape':'dot','label':'   OKLAHOMA   '},
-                  ks:{'color':'black','shape':'dot','label':'   KANSAS   '},
-                  co:{'color':'gold','shape':'dot','label':'   COLORADO   '},
-                  la:{'color':'orange','shape':'dot','label':'   LOUISIANA   '},
-                  ar:{'color':'purple','shape':'dot','label':'   ARKANSAS   '}
-              },
-
-              edges:{
-                  tx:{ nm:{}, ok:{}, la:{}, ar:{} },
-                  ok:{ co:{}, ks:{}, la:{}, ar:{}, nm:{} },
-                  co:{ nm:{}, ks:{}, co:{} },
-                  la:{ ar:{} }
-              }
-          };
-
-          sys.graft(data);
-     
+          var animals = sys.addNode('Animals',{'color':'red','shape':'dot','label':'Animals'});
+          var dog = sys.addNode('dog',{'color':'green','shape':'dot','label':'dog'});
+          var cat = sys.addNode('cat',{'color':'blue','shape':'dot','label':'cat'});
+          sys.addEdge(animals, dog);
+          sys.addEdge(animals, cat);
       </script>
-
     </body>
-    
 </html>
-
